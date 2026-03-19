@@ -10,8 +10,10 @@ import cors from 'cors';
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 const app = express();
-const PORT = 3000;
-app.use(cors());
+const PORT = process.env.PORT || 3000;
+app.use(cors({
+    origin: "*"
+}));
 app.use(express.json());
 
 app.post("/template", async (req, res) => {
