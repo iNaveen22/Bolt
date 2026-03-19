@@ -18,6 +18,7 @@
     "@types/cors": "^2.8.19",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
+    "express": "^5.2.1",
     "groq-sdk": "^0.37.0",
     "rehype-raw": "^7.0.0",
     "rehype-sanitize": "^6.0.0",
