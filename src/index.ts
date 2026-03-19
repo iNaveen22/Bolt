@@ -7,6 +7,7 @@ import { getSystemPrompt, BASE_PROMPT } from './prompts.js';
 import { basePrompt as nodeBasePrompt } from './defaults/node.js';
 import { basePrompt as reactBasePrompt } from './defaults/react.js';
 import cors from 'cors';
+import  type { Request, Response } from "express";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 const app = express();
@@ -16,7 +17,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
-app.post("/template", async (req, res) => {
+app.post("/template", async (req: Request, res: Response) => {
     try {
         const prompt = req.body.prompt;
 
@@ -62,7 +63,7 @@ app.post("/template", async (req, res) => {
     }
 });
 
-app.post("/chat", async (req, res) => {
+app.post("/chat", async (req: Request, res: Response) => {
     try {
         const messages = req.body.messages as Array<{ role: "user" | "assistant"; content: string; }>;
         if (!Array.isArray(messages)) {
@@ -132,7 +133,7 @@ app.post("/chat", async (req, res) => {
     }
 })
 
-app.post("/chat/stream", async (req, res) => {
+app.post("/chat/stream", async (req: Request, res: Response) => {
     res.setHeader("Content-Type", "text/event-stream");
     res.setHeader("Cache-Control", "no-cache, no-transform");
     res.setHeader("Connection", "keep-alive");
